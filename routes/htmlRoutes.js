@@ -13,8 +13,13 @@ module.exports = function(app) {
       saved: false
     })
     .then(function(dbArticle){
-      // console.log(dbArticle)
-      res.render("index", {dbArticle});
+      console.log("dbArticle")
+      console.log(dbArticle.length)
+      if(dbArticle.length===0){
+        res.render("clear");
+      } else {
+        res.render("index", {dbArticle});
+      }
     })
     .catch(function(err){
       console.log(err);
@@ -42,6 +47,7 @@ module.exports = function(app) {
             .then(function(dbNewArticle){
               // console.log(dbNewArticle)
               // res.json(dbNewArticle);
+              res.redirect('/');
             })
             .catch(function(err){
               console.log(err);
@@ -60,10 +66,11 @@ module.exports = function(app) {
         // resultArr.push(result);
       });
       console.log("-- db scraped")
-      res.redirect('/');
+      
     })
     
   });
+
 
   // Clear Article
   app.get("/clear", function(req, res){
