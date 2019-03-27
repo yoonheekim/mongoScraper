@@ -74,7 +74,9 @@ module.exports = function(app) {
 
   // Clear Article
   app.get("/clear", function(req, res){
-    db.Article.remove( { } )
+    db.Article.remove( {
+      saved: false
+    } )
     .then(function(dbRemove){
       console.log("-- db cleared");
       res.render("clear");
