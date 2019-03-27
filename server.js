@@ -3,12 +3,6 @@ var exphbs = require("express-handlebars");
 // var logger = require("morgan");
 var mongoose = require("mongoose");
 
-//scraping tools
-var axios = require("axios");
-var cheerio = require("cheerio");
-
-//require all models
-var db = require("./models");
 
 var PORT = process.env.PORT || 3000;
 
@@ -27,7 +21,7 @@ app.use(express.static("public"));
 
 
 var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
-mongoose.connect(MONGODB_URI);
+mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
 
 
 // Handlebars
@@ -40,7 +34,7 @@ app.engine(
 app.set("view engine", "handlebars");
 
 // Routes
-// require("./routes/apiRoutes")(app);
+require("./routes/apiRoutes")(app);
 require("./routes/htmlRoutes")(app);
 
 

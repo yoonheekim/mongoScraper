@@ -1,0 +1,65 @@
+
+
+  <div class="album py-5 bg-light">
+    <div class="container">
+
+    {{#each dbSavedrticles}}
+      <div class="card mb-4 border-primary shadow-sm">
+        <div class="card-body row">
+          <div class="col-md-9">
+            <h4 class="card-title">{{title}}</h4>
+            <p class="card-text">{{summary}}</p>
+            <div class="d-flex justify-content-between align-items-center">
+              {{!-- <div class="btn-group">
+                <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+              </div> --}}
+            </div>
+          </div>          
+          <div class="col-md-3"> 
+            {{#if img}}
+            <img src="{{img}}" class="card-img-top" alt="...">
+             {{/if}}
+          </div>   
+          <button type="button" class="btn btn-outline-primary ml-3 addComment" data-id="{{_id}}">Add Comment</button>  
+          <button type="button" class="btn btn-outline-warning ml-3 delete" data-id="{{_id}}">Delete Article</button>  
+
+          <!-- Modal -->
+          <div class="modal fade" id="commentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                      <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel">Comments</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                          </button>
+                      </div>
+                      <div class="modal-body" id="commentSection">
+
+                      </div>
+                      <div class="modal-body">
+                          <form>
+                              <div class="form-group">
+                                  <label for="exampleFormControlTextarea1">Insert Any Comment</label>
+                                  <textarea class="form-control" id="contentInput" rows="3"></textarea>
+                              </div>
+                          </form>
+                      </div>
+                      <div class="modal-footer">
+                          <button type="button" data-id="{{_id}}" class="btn btn-primary add" data-dismiss="modal">Add</button>
+                      </div>
+                  </div>
+              </div>
+          </div>  
+
+
+        </div>
+      </div>
+    {{/each}}
+
+    </div>
+  </div>
+
+</main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
